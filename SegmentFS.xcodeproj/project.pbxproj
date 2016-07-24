@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB23169E1D45610A00C3288A /* MNMSegmentFS.m in Sources */ = {isa = PBXBuildFile; fileRef = BB23169D1D45610A00C3288A /* MNMSegmentFS.m */; };
+		BB2316A01D45692D00C3288A /* SwiftSegmentFS.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB23169F1D45692D00C3288A /* SwiftSegmentFS.swift */; };
 		BB6381B01D41684700A61AD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6381AF1D41684700A61AD3 /* AppDelegate.swift */; };
 		BB6381B21D41684700A61AD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6381B11D41684700A61AD3 /* ViewController.swift */; };
 		BB6381B51D41684700A61AD3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6381B31D41684700A61AD3 /* Main.storyboard */; };
@@ -26,6 +28,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB2316991D45602400C3288A /* payload.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = payload.txt; sourceTree = SOURCE_ROOT; };
+		BB23169B1D45610A00C3288A /* SegmentFS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SegmentFS-Bridging-Header.h"; sourceTree = "<group>"; };
+		BB23169C1D45610A00C3288A /* MNMSegmentFS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMSegmentFS.h; sourceTree = "<group>"; };
+		BB23169D1D45610A00C3288A /* MNMSegmentFS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMSegmentFS.m; sourceTree = "<group>"; };
+		BB23169F1D45692D00C3288A /* SwiftSegmentFS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSegmentFS.swift; sourceTree = "<group>"; };
 		BB6381AC1D41684700A61AD3 /* SegmentFS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SegmentFS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB6381AF1D41684700A61AD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB6381B11D41684700A61AD3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,12 +84,17 @@
 		BB6381AE1D41684700A61AD3 /* SegmentFS */ = {
 			isa = PBXGroup;
 			children = (
+				BB2316991D45602400C3288A /* payload.txt */,
 				BB6381AF1D41684700A61AD3 /* AppDelegate.swift */,
 				BB6381B11D41684700A61AD3 /* ViewController.swift */,
 				BB6381B31D41684700A61AD3 /* Main.storyboard */,
 				BB6381B61D41684700A61AD3 /* Assets.xcassets */,
 				BB6381B81D41684700A61AD3 /* LaunchScreen.storyboard */,
 				BB6381BB1D41684700A61AD3 /* Info.plist */,
+				BB23169C1D45610A00C3288A /* MNMSegmentFS.h */,
+				BB23169D1D45610A00C3288A /* MNMSegmentFS.m */,
+				BB23169B1D45610A00C3288A /* SegmentFS-Bridging-Header.h */,
+				BB23169F1D45692D00C3288A /* SwiftSegmentFS.swift */,
 			);
 			path = SegmentFS;
 			sourceTree = "<group>";
@@ -148,6 +160,7 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = A8NKHWJDUL;
 						DevelopmentTeamName = "David Wagner";
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					BB6381BF1D41684700A61AD3 = {
@@ -204,7 +217,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB6381B21D41684700A61AD3 /* ViewController.swift in Sources */,
+				BB23169E1D45610A00C3288A /* MNMSegmentFS.m in Sources */,
 				BB6381B01D41684700A61AD3 /* AppDelegate.swift in Sources */,
+				BB2316A01D45692D00C3288A /* SwiftSegmentFS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,10 +354,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SegmentFS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					mnm_payload,
+					payload.bin,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.noiseandheat.ios.SegmentFS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SegmentFS/SegmentFS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -351,10 +375,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SegmentFS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					mnm_payload,
+					payload.bin,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.noiseandheat.ios.SegmentFS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SegmentFS/SegmentFS-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -404,6 +436,7 @@
 				BB6381CB1D41684700A61AD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BB6381CC1D41684700A61AD3 /* Build configuration list for PBXNativeTarget "SegmentFSTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +445,7 @@
 				BB6381CE1D41684700A61AD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

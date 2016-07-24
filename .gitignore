@@ -1,3 +1,6 @@
+payload.bin
+
+
 ### https://raw.github.com/github/gitignore/905cbca2e8c5ec518f81a137404fb4a25e5a9708/objective-c.gitignore
 
 # Xcode
@@ -165,7 +168,8 @@ xcuserdata/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
